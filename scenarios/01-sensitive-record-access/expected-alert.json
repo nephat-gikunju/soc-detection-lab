@@ -1,0 +1,14 @@
+{
+  "rule_id": "SOC-001",
+  "severity": "high",
+  "confidence": "medium",
+  "recommended_playbook": "playbooks/PB-001-sensitive-record-access.md",
+  "expected_evidence_event_ids": [
+    "sc001-101",
+    "sc001-102",
+    "sc001-103",
+    "sc001-104",
+    "sc001-105",
+    "sc001-106"
+  ]
+}

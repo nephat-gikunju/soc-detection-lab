@@ -1,0 +1,14 @@
+{
+  "rule_id": "SOC-002",
+  "severity": "critical",
+  "confidence": "high",
+  "recommended_playbook": "playbooks/PB-002-privileged-account-authentication-anomaly.md",
+  "expected_evidence_event_ids": [
+    "sc002-001",
+    "sc002-002",
+    "sc002-003",
+    "sc002-004",
+    "sc002-005",
+    "sc002-006"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "alerts": [
+    {
+      "rule_id": "SOC-003",
+      "severity": "high",
+      "confidence": "high"
+    },
+    {
+      "rule_id": "SOC-004",
+      "severity": "critical",
+      "confidence": "high"
+    }
+  ]
+}

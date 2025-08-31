@@ -1,0 +1,59 @@
+{
+  "catalog_version": "1.0",
+  "owner_role": "SOC Detection Engineering",
+  "data_handling": "Synthetic lab data only",
+  "rules": [
+    {
+      "rule_id": "SOC-001",
+      "title": "Suspicious bulk sensitive-record access",
+      "scenario": "SC-001",
+      "severity": "high",
+      "confidence": "medium",
+      "source_types": ["application_audit"],
+      "logic": "Five or more successful sensitive-data reads by one actor within ten minutes.",
+      "playbook": "playbooks/PB-001-sensitive-record-access.md",
+      "false_positive_notes": "Reporting, migration, and support workflows can produce high read volume. Verify approval, schedule, role, and data-access purpose before containment.",
+      "tuning_notes": "Replace the lab threshold with role and workflow baselines before production use.",
+      "test_fixture": "scenarios/01-sensitive-record-access/events.jsonl"
+    },
+    {
+      "rule_id": "SOC-002",
+      "title": "Privileged-account authentication anomaly",
+      "scenario": "SC-002",
+      "severity": "critical",
+      "confidence": "high",
+      "source_types": ["identity_provider", "authentication"],
+      "logic": "Five failed privileged-account sign-ins in five minutes followed by a success for the same actor from a new source IP within fifteen minutes.",
+      "playbook": "playbooks/PB-002-privileged-account-authentication-anomaly.md",
+      "false_positive_notes": "Confirm identity-provider retries, approved travel, support access, and source-IP ownership before declaring compromise.",
+      "tuning_notes": "Use known-device, MFA, conditional-access, and account-risk data when available.",
+      "test_fixture": "scenarios/02-privileged-account-authentication-anomaly/events.jsonl"
+    },
+    {
+      "rule_id": "SOC-003",
+      "title": "Kubernetes admission policy denied unsafe workload",
+      "scenario": "SC-003",
+      "severity": "high",
+      "confidence": "high",
+      "source_types": ["kubernetes_audit", "admission_control"],
+      "logic": "An admission policy denies an unsafe workload in a production namespace.",
+      "playbook": "playbooks/PB-003-kubernetes-production-control-break.md",
+      "false_positive_notes": "A blocked development deployment can be expected. Validate target namespace, policy, and change record.",
+      "tuning_notes": "Alert on repeated denials or denials involving privileged containers, unsigned images, or production service accounts.",
+      "test_fixture": "scenarios/03-kubernetes-production-control-break/events.jsonl"
+    },
+    {
+      "rule_id": "SOC-004",
+      "title": "Unapproved interactive Kubernetes execution",
+      "scenario": "SC-003",
+      "severity": "high or critical",
+      "confidence": "medium or high",
+      "source_types": ["kubernetes_audit", "runtime_security", "network_telemetry"],
+      "logic": "Interactive execution in production without break-glass approval; elevate to critical when a runtime shell or unapproved egress signal correlates within five minutes.",
+      "playbook": "playbooks/PB-003-kubernetes-production-control-break.md",
+      "false_positive_notes": "Approved break-glass maintenance and permitted SRE diagnostics must have a ticket, time limit, and named owner.",
+      "tuning_notes": "Maintain a short-lived approved-maintenance allowlist rather than a permanent account exclusion.",
+      "test_fixture": "scenarios/03-kubernetes-production-control-break/events.jsonl"
+    }
+  ]
+}

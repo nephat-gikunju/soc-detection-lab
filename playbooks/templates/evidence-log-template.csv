@@ -1,0 +1,2 @@
+evidence_id,case_id,collected_at_utc,collector,source_system,event_or_artifact_reference,time_window_utc,storage_location,integrity_reference,notes
+EV-001,CASE-000,YYYY-MM-DDTHH:MM:SSZ,analyst-role,synthetic-source,event-id-or-export-reference,YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ,approved-location,hash-or-not-applicable,synthetic-data-only

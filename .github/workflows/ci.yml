@@ -1,0 +1,30 @@
+name: Verify SOC Lab
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate repository conventions and scenarios
+        run: python3 scripts/validate_repository.py
+      - name: Run unit tests
+        run: PYTHONPATH=src python3 -m unittest discover -s tests -v
+      - name: Run all SOC labs
+        run: |
+          PYTHONPATH=src python3 -m soc_lab scenarios/01-sensitive-record-access
+          PYTHONPATH=src python3 -m soc_lab scenarios/02-privileged-account-authentication-anomaly
+          PYTHONPATH=src python3 -m soc_lab scenarios/03-kubernetes-production-control-break

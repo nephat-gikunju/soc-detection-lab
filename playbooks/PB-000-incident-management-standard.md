@@ -38,7 +38,7 @@ containment details.
 | Privacy/compliance owner and legal counsel | Assess privacy, contractual, regulatory, and notification obligations. |
 | Communications lead | Coordinates approved internal or external communications when required. |
 
-Use roles rather than named individuals in this portfolio lab.
+Use roles rather than named individuals in this lab.
 
 ## Required case fields
 

@@ -1,6 +1,6 @@
 # SOC Lab
 
-A reproducible, defensive security operations lab for a fictional organization.
+A reproducible, defensive security operations lab.
 It demonstrates application, identity, and Kubernetes detection engineering;
 end-to-end SOC incident handling; privacy-aware evidence collection; and
 remediation verification.
